@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днём Рождения, Эльвир!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #89f7fe, #66a6ff);
+            color: #fff;
+            padding: 50px;
+            overflow-x: auto;
+            transition: background 3s ease-in-out;
+            white-space: nowrap;
+        }
+        .content {
+            display: inline-block;
+            max-width: 100%;
+            white-space: normal;
+        }
+        h1, p, button {
+            transition: opacity 1.5s;
+        }
+        button {
+            background-color: #ff4081;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            background-color: #d81b60;
+            transform: scale(1.1);
+        }
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background-color: white;
+            border-radius: 50%;
+            animation: moveStars 5s linear infinite;
+        }
+        @keyframes moveStars {
+            from { transform: scale(1); opacity: 1; }
+            to { transform: scale(3); opacity: 0; }
+        }
+        #video-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: black;
+            opacity: 0;
+            transition: opacity 2s;
+            z-index: 10;
+        }
+        #birthday-video {
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain;
+        }
+        @media (max-width: 768px) {
+            body {
+                overflow-x: scroll;
+                white-space: normal;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>С Днём Рождения, Братух! 🎉</h1>
+        <p>Желаю счастья, здоровья (ну как без этого), вообщем, самое главное, бабла побольше,<br> 
+            чтобы хуй стоял и бабы были, сказали бы многие, но не я, хотя и я это тоже скажу)) Вооообщем, самое главное, <br> 
+            чтобы менты не встречались, а то прио без тонера это не прио, <br> 
+            Чтобы твоя ласточка не подводила, довезла до дома и не только) Друзей <br> 
+            хороших, плохих не нужно. Братан, 20 лет это не так уж и много, жизнь только начинается, <br> 
+            пусть она будет яркой, как неон в твоей приоре, <br> 
+            легкой, как спуск с горки, и приятной, как новый трек на сабвуфере. <br> 
+            Пускай каждый день будет поводом для улыбки, каждый вечер — возможностью кайфануть, <br> 
+            а каждая ночь — запоминающейся (ну ты понял). Вооообщем..... С днюхой, брат! 🎉🔥</p>
+        <button onclick="startSpaceJourney()">Нажми для сюрприза!</button>
+    </div>
+    <div id="video-container">
+        <video id="birthday-video" autoplay muted playsinline>
+            <source src="video.mp4" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+        </video>
+    </div>
+    <script>
+        function startSpaceJourney() {
+            document.body.style.background = "black";
+            document.querySelector('h1').style.opacity = '0';
+            document.querySelector('p').style.opacity = '0';
+            document.querySelector('button').style.opacity = '0';
+            
+            for (let i = 0; i < 100; i++) {
+                let star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                document.body.appendChild(star);
+                setTimeout(() => star.remove(), 5000);
+            }
+            
+            setTimeout(() => {
+                let videoContainer = document.getElementById('video-container');
+                let video = document.getElementById('birthday-video');
+                videoContainer.style.display = 'block';
+                setTimeout(() => videoContainer.style.opacity = '1', 100);
+                video.play();
+                video.muted = false;
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
